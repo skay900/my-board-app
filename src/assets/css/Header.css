@@ -1,0 +1,51 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 30px;
+    margin-right: 20px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.language, .support-link, .login-link {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
+
+.board-link {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    text-align: left;
+}
+
+.header-button {
+    padding: 8px 16px;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.header-button:hover {
+    background-color: #f1f1f1;
+}
