@@ -1,10 +1,11 @@
 {
   "DOMAIN": {
-      "API_SERVER": "http://localhost:9000"
-    },
+    "API_SERVER": "http://localhost:9000"
+  },
   "ENDPOINT": {
-      "LOGIN": "/user/signIn",
-      "REGISTRATION": "/user/signUp",
-      "ACCESS_TOKEN": "/auth/accessToken"
-    }
+    "LOGIN": "/user/sign-in",
+    "REGISTRATION": "/user/sign-up",
+    "USER_INFO": "/user/user-info",
+    "ACCESS_TOKEN": "/auth/accessToken"
+  }
 }

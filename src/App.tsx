@@ -1,41 +1,34 @@
 import React from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import {CssBaseline, ThemeProvider} from '@mui/material';
-import Container from '@mui/material/Container';
-import {createTheme} from '@mui/material/styles';
-import AppRouter from './routes/AppRouter';
-import Footer from "./components/Footer/Footer";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
-const queryClient = new QueryClient();
+import { Provider } from 'react-redux';
+import { persistor, store } from './redux/store';
+import Router from './routes/router';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#1976d2',
-        },
-        secondary: {
-            main: '#dc004e',
-        },
+  palette: {
+    primary: {
+      main: '#1976d2'
     },
+    secondary: {
+      main: '#dc004e'
+    }
+  }
 });
 
 const App = () => {
   return (
-      <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Container maxWidth="lg">
-            <AppRouter/>
-          </Container>
-          <Footer
-              title="Footer"
-              description="Something here to give the footer a purpose!"
-          />
+          <Router />
         </ThemeProvider>
-        <ReactQueryDevtools initialIsOpen={true} />
-      </QueryClientProvider>
+      </PersistGate>
+    </Provider>
   );
-}
+};
 
 export default App;

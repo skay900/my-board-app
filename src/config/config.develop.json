@@ -3,8 +3,9 @@
     "API_SERVER": "http://localhost:9000"
   },
   "ENDPOINT": {
-    "LOGIN": "/user/signIn",
-    "REGISTRATION": "/user/signUp",
+    "LOGIN": "/user/sign-in",
+    "REGISTRATION": "/user/sign-up",
+    "USER_INFO": "/user/user-info",
     "ACCESS_TOKEN": "/auth/accessToken"
   }
 }
