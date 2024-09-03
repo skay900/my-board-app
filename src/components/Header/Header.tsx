@@ -5,9 +5,9 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from '@mui/material/Link';
+import { logout, selectUserInfo } from '../../redux/auth-slice';
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -20,11 +20,18 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
   const { sections, title } = props;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userInfo = useSelector(selectUserInfo);
+
   const handleClick = () => {
     navigate('/'); // 원하는 경로로 내비게이션
   };
 
-  const { isAuthenticated, email, name } = useSelector((state: RootState) => state.auth);
+  const handleLogout = () => {
+    // @ts-ignore
+    dispatch(logout());
+    navigate('/');
+  };
 
   return (
     <React.Fragment>
@@ -52,7 +59,7 @@ const Header = (props: HeaderProps) => {
         <IconButton>
           <SearchIcon />
         </IconButton>
-        {!isAuthenticated ? (
+        {!userInfo.isAuthenticated ? (
           <>
             <Button variant="outlined" size="small" onClick={() => navigate('/login')} sx={{ mr: 1 }}>
               Sign in
@@ -62,7 +69,7 @@ const Header = (props: HeaderProps) => {
             </Button>
           </>
         ) : (
-          <Button variant="outlined" size="small" onClick={() => navigate('/')} sx={{ mr: 1 }}>
+          <Button variant="outlined" size="small" onClick={handleLogout} sx={{ mr: 1 }}>
             Logout
           </Button>
         )}

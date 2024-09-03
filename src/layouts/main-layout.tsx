@@ -10,10 +10,12 @@ type Props = {
 
 export default function MainLayout({ children }: Props) {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header title="Blog" sections={sections} />
-      <Container maxWidth="lg">{children}</Container>
+      <Container maxWidth="lg" style={{ flex: '1' }}>
+        {children}
+      </Container>
       <Footer title="Footer" description="Something here to give the footer a purpose!" />
-    </>
+    </div>
   );
 }

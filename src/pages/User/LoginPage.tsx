@@ -16,19 +16,7 @@ import { IFormInput } from '../../types/Interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess, selectUserInfo } from '../../redux/auth-slice';
 import { fetchLogin } from '../../services/UserApi';
-
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import kakaoLogin from '../../assets/images/kakao_login_medium_narrow.png';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -50,6 +38,10 @@ const LoginPage = () => {
   console.log('Login email : ', userInfo.email);
   console.log('Login name : ', userInfo.name);
   console.log('Login phone : ', userInfo.phone);
+
+  const handleKakaoLogin = () => {
+    const a = 1;
+  };
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     setLoginError(null);
@@ -122,8 +114,26 @@ const LoginPage = () => {
                 This field is required
               </Typography>
             )}
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 1, mb: 1 }}>
               Sign In
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              onClick={handleKakaoLogin}
+              sx={{
+                mt: 1,
+                mb: 1,
+                backgroundColor: '#FEE500',
+                '&:hover': {
+                  backgroundColor: '#FDD835'
+                },
+                color: '#000',
+                fontWeight: 'bold'
+              }}
+            >
+              <img src={kakaoLogin} alt="카카오 로고" style={{ marginRight: '8px', verticalAlign: 'middle' }} />
             </Button>
             <Grid container>
               <Grid item xs>
@@ -139,7 +149,6 @@ const LoginPage = () => {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

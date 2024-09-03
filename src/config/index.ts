@@ -10,6 +10,7 @@ interface DomainConfig {
 interface EndpointConfig {
   LOGIN: string;
   REGISTRATION: string;
+  USER_INFO: string;
   ACCESS_TOKEN: string;
 }
 
