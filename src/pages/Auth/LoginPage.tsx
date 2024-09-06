@@ -13,10 +13,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { IFormInput } from '../../types/Interfaces';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginSuccess, selectUserInfo } from '../../redux/auth-slice';
-import { fetchLogin } from '../../services/UserApi';
-import kakaoLogin from '../../assets/images/kakao_login_medium_narrow.png';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../redux/auth-slice';
+import { fetchLogin } from '../../services/AuthApi';
+import kakaoLogin from '../../assets/images/button_login_kakao.png';
+import NaverLoginButton from '../../components/Button/NaverLogin';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -30,14 +31,6 @@ const LoginPage = () => {
   const [loginError, setLoginError] = React.useState<string | null>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const userInfo = useSelector(selectUserInfo);
-
-  console.log('Login isAuthenticated : ', userInfo.isAuthenticated);
-  console.log('Login accessToken : ', userInfo.accessToken);
-  console.log('Login email : ', userInfo.email);
-  console.log('Login name : ', userInfo.name);
-  console.log('Login phone : ', userInfo.phone);
 
   const handleKakaoLogin = () => {
     const a = 1;
@@ -117,7 +110,10 @@ const LoginPage = () => {
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 1, mb: 1 }}>
               Sign In
             </Button>
-            <Button
+            <div>
+              <NaverLoginButton />
+            </div>
+            {/*<Button
               type="submit"
               fullWidth
               variant="contained"
@@ -127,14 +123,14 @@ const LoginPage = () => {
                 mb: 1,
                 backgroundColor: '#FEE500',
                 '&:hover': {
-                  backgroundColor: '#FDD835'
+                  backgroundColor: '#FEE500'
                 },
                 color: '#000',
                 fontWeight: 'bold'
               }}
             >
               <img src={kakaoLogin} alt="카카오 로고" style={{ marginRight: '8px', verticalAlign: 'middle' }} />
-            </Button>
+            </Button>*/}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

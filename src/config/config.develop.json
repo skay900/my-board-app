@@ -6,6 +6,7 @@
     "LOGIN": "/user/sign-in",
     "REGISTRATION": "/user/sign-up",
     "USER_INFO": "/user/user-info",
-    "ACCESS_TOKEN": "/auth/accessToken"
+    "ACCESS_TOKEN": "/auth/accessToken",
+    "NAVER_LOGIN_URL": "/auth/naver"
   }
 }

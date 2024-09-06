@@ -1,10 +1,10 @@
 import { useRoutes } from 'react-router-dom';
 import BoardPage from '../pages/Board/BoardPage';
-import LoginPage from '../pages/User/LoginPage';
+import LoginPage from '../pages/Auth/LoginPage';
 import MainLayout from '../layouts/main-layout';
 import MainPage from '../pages/Main/MainPage';
 import { Outlet } from 'react-router-dom';
-import RegisterPage from '../pages/User/RegisterPage';
+import RegisterPage from '../pages/Auth/RegisterPage';
 
 export default function Router() {
   return useRoutes([

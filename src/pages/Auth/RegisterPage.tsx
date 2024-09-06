@@ -12,7 +12,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IFormInput } from '../../types/Interfaces';
-import { fetchRegister } from '../../services/UserApi';
+import { registerUser } from '../../services/AuthApi';
 import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
@@ -36,7 +36,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await fetchRegister(data);
+      const response = await registerUser(data);
       if (response.code === 200) {
         alert(`${response.data.name}님 회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.`);
         navigate('/login');
