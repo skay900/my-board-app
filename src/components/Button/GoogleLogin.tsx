@@ -1,12 +1,12 @@
 import React from 'react';
-import { redirectToNaver } from '../../services/AuthApi';
-import naverLogin from '../../assets/images/button_login_naver.png';
+import { redirectToGoogle } from '../../services/AuthApi';
+import googleLogin from '../../assets/images/button_login_google.png';
 import Button from '@mui/material/Button';
 
-// 네이버 로그인 버튼을 표시하는 컴포넌트
-const NaverLoginButton: React.FC = () => {
+// 구글 로그인 버튼을 표시하는 컴포넌트
+const GoogleLoginButton: React.FC = () => {
   const handleLogin = () => {
-    redirectToNaver();
+    redirectToGoogle();
   };
 
   return (
@@ -17,16 +17,16 @@ const NaverLoginButton: React.FC = () => {
       onClick={handleLogin}
       sx={{
         mb: 1,
-        backgroundColor: '#03C75A',
+        backgroundColor: '#e8eaed',
         '&:hover': {
-          backgroundColor: '#03C75A'
+          backgroundColor: '#e8eaed'
         },
         fontWeight: 'bold'
       }}
     >
       <img
-        src={naverLogin}
-        alt="Naver Logo"
+        src={googleLogin}
+        alt="Google Logo"
         style={{
           height: 26,
           verticalAlign: 'middle'
@@ -36,4 +36,4 @@ const NaverLoginButton: React.FC = () => {
   );
 };
 
-export default NaverLoginButton;
+export default GoogleLoginButton;

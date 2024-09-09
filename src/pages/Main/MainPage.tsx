@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import XIcon from '@mui/icons-material/X';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { useSelector } from 'react-redux';
-import { selectUserInfo } from '../../redux/auth-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginSuccess, selectUserInfo } from '../../redux/auth-slice';
+import { fetchUserInfo } from '../../services/AuthApi';
+import Cookies from 'js-cookie';
 
 const mainFeaturedPost = {
   title: 'Title of a longer featured blog post',
@@ -64,6 +66,7 @@ interface MainProps {
 }
 
 const MainPage = (props: MainProps) => {
+  const dispatch = useDispatch();
   const userInfo = useSelector(selectUserInfo);
 
   console.log('Main isAuthenticated : ', userInfo.isAuthenticated);
@@ -71,6 +74,31 @@ const MainPage = (props: MainProps) => {
   console.log('Main email : ', userInfo.email);
   console.log('Main name : ', userInfo.name);
   console.log('Main phone : ', userInfo.phone);
+
+  useEffect(() => {
+    // 만약 인증되지 않았다면 쿠키에서 accessToken을 가져와 유저 정보를 로드
+    if (!userInfo.isAuthenticated) {
+      const email = Cookies.get('email');
+      const accessToken = Cookies.get('accessToken');
+      if (email && accessToken) {
+        fetchUserInfo()
+          .then((userData) => {
+            // 성공 시 Redux 스토어에 유저 정보 업데이트
+            dispatch(
+              loginSuccess({
+                accessToken,
+                email: userData.data.email,
+                name: userData.data.name,
+                phone: userData.data.phone
+              })
+            );
+          })
+          .catch((error) => {
+            console.error('Error fetching user info:', error);
+          });
+      }
+    }
+  }, [dispatch, userInfo.isAuthenticated]);
 
   return (
     <main>

@@ -18,6 +18,7 @@ import { loginSuccess } from '../../redux/auth-slice';
 import { fetchLogin } from '../../services/AuthApi';
 import kakaoLogin from '../../assets/images/button_login_kakao.png';
 import NaverLoginButton from '../../components/Button/NaverLogin';
+import GoogleLoginButton from '../../components/Button/GoogleLogin';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -110,9 +111,11 @@ const LoginPage = () => {
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 1, mb: 1 }}>
               Sign In
             </Button>
-            <div>
-              <NaverLoginButton />
-            </div>
+
+            <NaverLoginButton />
+
+            <GoogleLoginButton />
+
             {/*<Button
               type="submit"
               fullWidth

@@ -13,6 +13,7 @@ interface EndpointConfig {
   USER_INFO: string;
   ACCESS_TOKEN: string;
   NAVER_LOGIN_URL: string;
+  GOOGLE_LOGIN_URL: string;
 }
 
 interface Config {

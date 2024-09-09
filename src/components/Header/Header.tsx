@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from '@mui/material/Link';
 import { logout, selectUserInfo } from '../../redux/auth-slice';
+import Cookies from 'js-cookie';
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -30,6 +31,8 @@ const Header = (props: HeaderProps) => {
   const handleLogout = () => {
     // @ts-ignore
     dispatch(logout());
+    Cookies.remove('email');
+    Cookies.remove('accessToken');
     navigate('/');
   };
 
